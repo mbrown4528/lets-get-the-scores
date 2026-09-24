@@ -40,10 +40,12 @@
     -webkit-user-select: none;
   }
   /* Background layer sized to the full screen, including the area behind Safari's bars */
-  html { background: #F8F6F2; }
+  html { background: #F8F6F2; min-height: calc(100% + env(safe-area-inset-top, 0px)); }
   body::before {
     content: ""; position: fixed; left: 0; right: 0; top: 0;
-    height: 100vh; height: 100lvh;
+    /* Extra status-bar height covers an iPhone home-screen quirk that leaves a gap at the bottom */
+    height: calc(100vh + env(safe-area-inset-top, 0px) + env(safe-area-inset-bottom, 0px));
+    height: calc(100lvh + env(safe-area-inset-top, 0px) + env(safe-area-inset-bottom, 0px));
     z-index: -1; pointer-events: none;
     background:
       radial-gradient(ellipse 120% 60% at 50% -10%, #6B2A63 0%, transparent 60%),
